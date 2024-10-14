@@ -20,16 +20,25 @@ export const App = () => {
     const group = useRef();
     const { nodes, materials } = useGLTF(path);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       const box = new THREE.Box3().setFromObject(group.current);
       const height = box.max.y - box.min.y; // Get the height of the model
       console.log("Warehouse height:", height); // You can adjust the camera based on this
-
       if (group.current) {
         group.current.traverse((object) => {
           if (object.isMesh) {
-            // Set a random color for each mesh
-            object.material.color.set(0xffffff * Math.random());
+            // Log the object and material to check what is being traversed
+            console.log("Object:", object);
+            console.log("Material:", object.material);
+      
+            // Check if the material has a color property
+            if (object.material && object.material.color) {
+              // Set the color to red
+              object.material.color.set(0xff0000); // Red color
+              console.log("Color changed to red");
+            } else {
+              console.log("Material does not support color change.");
+            }
           }
         });
       }
