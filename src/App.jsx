@@ -1,48 +1,54 @@
-import React, { useRef, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useEffect, useLayoutEffect, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Sky, useGLTF, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { Ground } from "./Ground";
-import SaveIcon from '@mui/icons-material/Save';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import StraightenIcon from '@mui/icons-material/Straighten';
-import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
-import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
-import FormatPaintIcon from '@mui/icons-material/FormatPaint';
-import WbShadeIcon from '@mui/icons-material/WbShade';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+
+import SizeAndBays from "./SizeAndBays";
+
+import SaveIcon from "@mui/icons-material/Save";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import StraightenIcon from "@mui/icons-material/Straighten";
+import ViewAgendaIcon from "@mui/icons-material/ViewAgenda";
+import DoorSlidingIcon from "@mui/icons-material/DoorSliding";
+import FormatPaintIcon from "@mui/icons-material/FormatPaint";
+import WbShadeIcon from "@mui/icons-material/WbShade";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 
 export const App = () => {
+
+  const [sizeandbars, setSizeAndBars] = useState(false);
+
   function Warehouse({ path, props }) {
     const group = useRef();
     const { nodes, materials } = useGLTF(path);
 
-    useLayoutEffect(() => {
-      const box = new THREE.Box3().setFromObject(group.current);
-      const height = box.max.y - box.min.y; // Get the height of the model
-      console.log("Warehouse height:", height); // You can adjust the camera based on this
-      if (group.current) {
-        group.current.traverse((object) => {
-          if (object.isMesh) {
-            // Log the object and material to check what is being traversed
-            console.log("Object:", object);
-            console.log("Material:", object.material);
-      
-            // Check if the material has a color property
-            if (object.material && object.material.color) {
-              // Set the color to red
-              object.material.color.set(0xff0000); // Red color
-              console.log("Color changed to red");
-            } else {
-              console.log("Material does not support color change.");
-            }
-          }
-        });
-      }
-    }, []);
+    // useLayoutEffect(() => {
+    //   const box = new THREE.Box3().setFromObject(group.current);
+    //   const height = box.max.y - box.min.y; // Get the height of the model
+    //   console.log("Warehouse height:", height); // You can adjust the camera based on this
+    //   if (group.current) {
+    //     group.current.traverse((object) => {
+    //       if (object.isMesh) {
+    //         // Log the object and material to check what is being traversed
+    //         console.log("Object:", object);
+    //         console.log("Material:", object.material);
+
+    //         // Check if the material has a color property
+    //         if (object.material && object.material.color) {
+    //           // Set the color to red
+    //           object.material.color.set(0xff0000); // Red color
+    //           console.log("Color changed to red");
+    //         } else {
+    //           console.log("Material does not support color change.");
+    //         }
+    //       }
+    //     });
+    //   }
+    // }, []);
 
     return (
       <group ref={group} {...props} dispose={null}>
@@ -356,79 +362,193 @@ export const App = () => {
   }
 
   useGLTF.preload("/warehouse.gltf");
+  
+
+  const handleSizeAndBays = (open) => {
+    if(sizeandbars == true) {
+      setSizeAndBars(false);
+      return;
+    } 
+    setSizeAndBars(open);
+  };
+
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <div class="w-[64px] h-full bg-[#fff] fixed z-10 top-0 left-0 overflow-x-hidden py-[6px] leading-[0.9rem] text-[#757575] text-[0.7rem]" style={{fontWeight : "lighter"}}>
-        <div class="py-[6px] menu-item " style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
+      <div
+        className="w-[64px] h-full fixed top-0 left-0 overflow-x-hidden py-[6px] leading-[0.9rem] text-[#757575] text-[0.7rem]"
+        style={{ fontWeight: "lighter", backgroundColor:"#f4f4f4", zIndex : "1300" }}
+      >
+        <div
+          className="py-[6px] menu-item "
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <SaveIcon />
-          <div>Save <br/> Shed</div>
+          <div>
+            Save <br /> Shed
+          </div>
         </div>
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <AddBoxIcon/>
-          <div>New <br/> Shed</div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <AddBoxIcon />
+          <div>
+            New <br /> Shed
+          </div>
         </div>
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <FolderOpenIcon/> 
-          <div>Open <br/> Shed</div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <FolderOpenIcon />
+          <div>
+            Open <br /> Shed
+          </div>
         </div>
-        <div style={{margin : "10px 5px", height : "1px", backgroundColor : "#aaa"}}></div>
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <StraightenIcon/> 
-          <div>Size &<br/> Bays</div>
+        <div
+          style={{ margin: "10px 5px", height: "1px", backgroundColor: "#aaa" }}
+        ></div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center", 
+          }}
+          onClick={() => handleSizeAndBays(true)}
+        >
+          <StraightenIcon />
+          <div>
+            Size &<br /> Bays
+          </div>
         </div>
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <ViewAgendaIcon/>
-          <div>Walls &<br/> Slabs</div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ViewAgendaIcon />
+          <div>
+            Walls &<br /> Slabs
+          </div>
         </div>
 
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <DoorSlidingIcon/>
-          <div>Add<br/> thing</div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <DoorSlidingIcon />
+          <div>
+            Add
+            <br /> thing
+          </div>
         </div>
 
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <FormatPaintIcon/>
-          <div>Colours &<br/> Style</div>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <FormatPaintIcon />
+          <div>
+            Colours<br />& Style
+          </div>
         </div>
 
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <WbShadeIcon/>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <WbShadeIcon />
           <div>Awnings</div>
         </div>
 
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <VisibilityIcon/>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <VisibilityIcon />
           <div>Visibility</div>
         </div>
 
-        <div style={{margin : "10px 5px", height : "1px", backgroundColor : "#aaa"}}></div>
+        <div
+          style={{ margin: "10px 5px", height: "1px", backgroundColor: "#aaa" }}
+        ></div>
 
-        <div class="py-[6px] menu-item" style={{display : "flex", flexDirection:"column",  justifyContent : "center", alignItems : "center"}}>
-          <RequestQuoteIcon/>
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <RequestQuoteIcon />
           <div>Quote</div>
         </div>
+        <SizeAndBays toggleState={sizeandbars} onClick={(e) => setSizeAndBars(false)}/>
       </div>
-      <div class="ml-[64px] h-full">
+      <div className="ml-[64px] h-full">
         <Canvas
           shadows
-          camera={{ position: [13, 0, 18], fov: 55, near: 1, far: 1000 }}
+          camera={{ position: [13, 0, 18], fov: 55}}
         >
           <hemisphereLight intensity={1.5} color="white" groundColor="black" />
           <Sky sunPosition={[100, 80, 100]} />
           <ambientLight intensity={1.5} />
           <pointLight castShadow intensity={1.5} position={[100, 100, 100]} />
           <Physics gravity={[0, -30, 0]}>
-            <Ground position={[0, 2, 0]} />
-            <group position={[0, 2, 0]} scale={[0.011, 0.008, 0.011]}>
+            <Ground position={[0, 0, 0]} />
+            <group position={[0, 0, 0]} scale={[0.011, 0.008, 0.011]}>
               <Warehouse path="/warehouse.gltf" />
             </group>
           </Physics>
           <OrbitControls
             autoRotateSpeed={0.85}
             zoomSpeed={0.75}
-            minPolarAngle={Math.PI / 2.5}
-            maxPolarAngle={Math.PI / 2.55}
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2.1}
           />
         </Canvas>
       </div>

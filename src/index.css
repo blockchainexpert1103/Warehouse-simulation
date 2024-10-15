@@ -11,3 +11,14 @@ body {
   cursor: pointer;
   background-color: rgb(0, 0, 0, 0.1);
 }
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
+  background-color: rgba(255,255,255,0.8);
+  margin-left: 64px;
+  z-index: 1;
+  --Paper-shadow : none !important;
+}
+
+.css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
