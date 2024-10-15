@@ -22,3 +22,13 @@ body {
 .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.divider {
+  display: block;
+  margin: 0;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgba(0, 0, 0, .12);
+  margin-top: 15px;
+  margin-bottom:15px;
+}
