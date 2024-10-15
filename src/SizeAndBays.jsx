@@ -15,10 +15,14 @@ import { color } from "three/webgpu";
 
 export default function SizeAndBays({ toggleState, onClick }) {
   return (
-    <Drawer
-      open={toggleState}
-    >
-      <Box sx={{ width: 400 }} role="presentation">
+    <Drawer open={toggleState} onClose={() => onClick(false)}>
+      <Box
+        sx={{ width: 400 }}
+        role="presentation"
+        style={{
+          pointerEvents: "auto", // Sidebar is interactive
+        }}
+      >
         <div style={{ margin: "10px" }}>
           <CloseIcon
             style={{
@@ -44,7 +48,7 @@ export default function SizeAndBays({ toggleState, onClick }) {
                 color: "#004483",
                 fontWeight: "500",
                 marginTop: "15px",
-                marginBottom: "10px    ",
+                marginBottom: "10px",
               }}
             >
               General

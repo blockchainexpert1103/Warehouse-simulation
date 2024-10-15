@@ -19,7 +19,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 
 export const App = () => {
-
   const [sizeandbars, setSizeAndBars] = useState(false);
 
   function Warehouse({ path, props }) {
@@ -362,22 +361,24 @@ export const App = () => {
   }
 
   useGLTF.preload("/warehouse.gltf");
-  
 
   const handleSizeAndBays = (open) => {
-    if(sizeandbars == true) {
+    if (sizeandbars == true) {
       setSizeAndBars(false);
       return;
-    } 
+    }
     setSizeAndBars(open);
   };
-
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <div
         className="w-[64px] h-full fixed top-0 left-0 overflow-x-hidden py-[6px] leading-[0.9rem] text-[#757575] text-[0.7rem]"
-        style={{ fontWeight: "lighter", backgroundColor:"#f4f4f4", zIndex : "1300" }}
+        style={{
+          fontWeight: "lighter",
+          backgroundColor: "#f4f4f4",
+          zIndex: "1300",
+        }}
       >
         <div
           className="py-[6px] menu-item "
@@ -430,7 +431,7 @@ export const App = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center", 
+            alignItems: "center",
           }}
           onClick={() => handleSizeAndBays(true)}
         >
@@ -439,6 +440,10 @@ export const App = () => {
             Size &<br /> Bays
           </div>
         </div>
+        <SizeAndBays
+          toggleState={sizeandbars}
+          onClick={() => setSizeAndBars(false)}
+        />
         <div
           className="py-[6px] menu-item"
           style={{
@@ -481,7 +486,8 @@ export const App = () => {
         >
           <FormatPaintIcon />
           <div>
-            Colours<br />& Style
+            Colours
+            <br />& Style
           </div>
         </div>
 
@@ -527,12 +533,14 @@ export const App = () => {
           <RequestQuoteIcon />
           <div>Quote</div>
         </div>
-        <SizeAndBays toggleState={sizeandbars} onClick={(e) => setSizeAndBars(false)}/>
+        
       </div>
-      <div className="ml-[64px] h-full">
+      <div
+        className="ml-[64px] h-full"
+      >
         <Canvas
           shadows
-          camera={{ position: [13, 0, 18], fov: 55}}
+          camera={{ position: [1.3, 0, 1.8], fov: 35, zoom: 0.9 }}
         >
           <hemisphereLight intensity={1.5} color="white" groundColor="black" />
           <Sky sunPosition={[100, 80, 100]} />
@@ -540,11 +548,13 @@ export const App = () => {
           <pointLight castShadow intensity={1.5} position={[100, 100, 100]} />
           <Physics gravity={[0, -30, 0]}>
             <Ground position={[0, 0, 0]} />
-            <group position={[0, 0, 0]} scale={[0.011, 0.008, 0.011]}>
+            <group position={[0, 0, 0]} scale={[0.00085, 0.0006, 0.0008]}>
               <Warehouse path="/warehouse.gltf" />
             </group>
           </Physics>
           <OrbitControls
+            minDistance={0.56}
+            maxDistance={5}
             autoRotateSpeed={0.85}
             zoomSpeed={0.75}
             minPolarAngle={0}
