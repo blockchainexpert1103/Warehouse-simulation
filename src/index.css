@@ -12,13 +12,6 @@ body {
   background-color: rgb(0, 0, 0, 0.1);
 }
 
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
-  background-color: rgba(255,255,255,0.8);
-  margin-left: 64px;
-  z-index: 1;
-  --Paper-shadow : none !important;
-}
-
 .css-4nmryk-MuiBackdrop-root-MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -28,7 +21,40 @@ body {
   margin: 0;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: rgba(0, 0, 0, .12);
+  border-top-color: rgba(0, 0, 0, .12); 
   margin-top: 15px;
   margin-bottom:15px;
+}
+
+
+.css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
+  background-color : rgba(255, 255, 255, 0.8) !important;
+}
+
+.css-1krrxmk {
+  background-color : rgba(255, 255, 255, 0.8) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 8px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  border-radius: 8px;
 }

@@ -21,6 +21,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { color } from "three/webgpu";
+import zIndex from "@mui/material/styles/zIndex";
 
 const roofStyle = [
   {
@@ -43,6 +44,9 @@ export default function SizeAndBays({ toggleState, onClick }) {
         role="presentation"
         style={{
           pointerEvents: "auto", // Sidebar is interactive
+          backgroundColor: "rgba(255,255,255,0.8)",
+          marginLeft: "64px",
+          zIndex: "1",
         }}
       >
         <div style={{ margin: "10px" }}>

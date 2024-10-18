@@ -17,6 +17,16 @@ import FormatPaintIcon from "@mui/icons-material/FormatPaint";
 import WbShadeIcon from "@mui/icons-material/WbShade";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import CloudOffIcon from "@mui/icons-material/CloudOff";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import BuildIcon from "@mui/icons-material/Build";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import SettingsIcon from "@mui/icons-material/Settings";
+import DescriptionIcon from "@mui/icons-material/Description";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import InfoIcon from '@mui/icons-material/Info';
 
 export const App = () => {
   const [sizeandbars, setSizeAndBars] = useState(false);
@@ -381,7 +391,7 @@ export const App = () => {
         }}
       >
         <div
-          className="py-[6px] menu-item "
+          className="py-[6px]"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -389,10 +399,7 @@ export const App = () => {
             alignItems: "center",
           }}
         >
-          <SaveIcon />
-          <div>
-            Save <br /> Shed
-          </div>
+          <CloudOffIcon style={{ opacity: "0.6" }} />
         </div>
         <div
           className="py-[6px] menu-item"
@@ -425,6 +432,20 @@ export const App = () => {
         <div
           style={{ margin: "10px 5px", height: "1px", backgroundColor: "#aaa" }}
         ></div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <LocalOfferIcon />
+          <div>Tag</div>
+        </div>
+
         <div
           className="py-[6px] menu-item"
           style={{
@@ -500,8 +521,35 @@ export const App = () => {
             alignItems: "center",
           }}
         >
+          <BuildIcon />
+
+          <div>Structure</div>
+        </div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <WbShadeIcon />
           <div>Awnings</div>
+        </div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <EngineeringIcon />
+          <div>Engineering</div>
         </div>
 
         <div
@@ -530,14 +578,77 @@ export const App = () => {
             alignItems: "center",
           }}
         >
-          <RequestQuoteIcon />
-          <div>Quote</div>
+          <SettingsIcon />
+          <div>Setting</div>
         </div>
-        
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <DescriptionIcon />
+          <div>Description</div>
+        </div>
+
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ContentCopyIcon />
+          <div>Copy Shed</div>
+        </div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ContentPasteIcon />
+          <div>Paste Shed</div>
+        </div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <EditNoteIcon />
+          <div>Flashing <br/> Editor</div>
+        </div>
+
+        <div
+          className="py-[6px] menu-item"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <InfoIcon />
+          <div>App Info</div>
+        </div>
       </div>
-      <div
-        className="ml-[64px] h-full"
-      >
+      <div className="ml-[64px] h-full">
         <Canvas
           shadows
           camera={{ position: [1.3, 0, 1.8], fov: 35, zoom: 0.9 }}
